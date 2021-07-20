@@ -22,8 +22,8 @@ requirements:
     - wheel
   run:
     - python >=3.6
-    - pyface >=7.3
-    - traits >=6.2
+    - pyface >=7.3.0
+    - traits >=6.2.0
 
 test:
   imports:
@@ -32,7 +32,7 @@ test:
     - pip
     # pyface 7.3.0 requires:
     - importlib-metadata
-    - importlib-resources
+    - importlib_resources
   commands:
     - pip check
 
