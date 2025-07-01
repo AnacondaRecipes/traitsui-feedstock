@@ -1,4 +1,4 @@
-{% set version = "7.2.1" %}
+{% set version = "8.0.0" %}
 
 package:
   name: traitsui
@@ -7,12 +7,12 @@ package:
 source:
   fn: traitsui-{{ version }}.tar.bz2
   url: https://pypi.io/packages/source/t/traitsui/traitsui-{{ version }}.tar.gz
-  sha256: dfc39015faf0591f9927e3d4d22bd95a16d49c85db30e60acd4ba7b85c7c5d5b
+  sha256: 901b9d1cbc45513e00a7397677b098441b28774b688f30a159bad4801bf40364
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: true  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
@@ -22,17 +22,15 @@ requirements:
     - wheel
   run:
     - python >=3.6
-    - pyface >=7.3.0
+    - pyface >=8.0
     - traits >=6.2.0
+    - importlib-metadata  # [py<38]
 
 test:
   imports:
     - traitsui
   requires:
     - pip
-    # pyface 7.3.0 requires:
-    - importlib-metadata
-    - importlib_resources
   commands:
     - pip check
 
