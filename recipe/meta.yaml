@@ -21,7 +21,7 @@ requirements:
     - setuptools
     - wheel
   run:
-    - python >=3.6
+    - python
     - pyface >=8.0
     - traits >=6.2.0
     - importlib-metadata  # [py<38]
@@ -35,11 +35,19 @@ test:
     - pip check
 
 about:
-  home: http://docs.enthought.com/traitsui/
+  home: https://docs.enthought.com/traitsui/
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
   summary: TraitsUI - Traits-capable windowing framework
+  description: |
+    TraitsUI is a Python user interface toolkit that provides a declarative approach
+    to building interactive GUIs. It automatically generates user interfaces from
+    declarative object definitions using the Traits type system. TraitsUI supports
+    multiple GUI backends including Qt and wxPython, allowing developers to create
+    cross-platform desktop applications with minimal code. The framework is
+    particularly well-suited for scientific and engineering applications where
+    rapid prototyping and data visualization are important.
   doc_url: https://docs.enthought.com/traitsui/index.html
   dev_url: https://github.com/enthought/traitsui
 
