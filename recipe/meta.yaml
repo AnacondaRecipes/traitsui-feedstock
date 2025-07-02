@@ -1,12 +1,12 @@
+{% set name = "traitsui" %}
 {% set version = "8.0.0" %}
 
 package:
-  name: traitsui
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: traitsui-{{ version }}.tar.bz2
-  url: https://pypi.io/packages/source/t/traitsui/traitsui-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 901b9d1cbc45513e00a7397677b098441b28774b688f30a159bad4801bf40364
 
 build:
@@ -18,13 +18,15 @@ requirements:
   host:
     - pip
     - python
-    - setuptools
+    - setuptools >=61
     - wheel
   run:
     - python
     - pyface >=8.0
     - traits >=6.2.0
     - importlib-metadata  # [py<38]
+  run_constrained:
+    - wxpython >=4.0.0
 
 test:
   imports:
