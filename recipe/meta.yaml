@@ -1,47 +1,55 @@
-{% set version = "7.2.1" %}
+{% set name = "traitsui" %}
+{% set version = "8.0.0" %}
 
 package:
-  name: traitsui
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: traitsui-{{ version }}.tar.bz2
-  url: https://pypi.io/packages/source/t/traitsui/traitsui-{{ version }}.tar.gz
-  sha256: dfc39015faf0591f9927e3d4d22bd95a16d49c85db30e60acd4ba7b85c7c5d5b
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 901b9d1cbc45513e00a7397677b098441b28774b688f30a159bad4801bf40364
 
 build:
   number: 0
-  noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  skip: true  # [py<37]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
     - pip
     - python
-    - setuptools
+    - setuptools >=61
     - wheel
   run:
-    - python >=3.6
-    - pyface >=7.3.0
+    - python
+    - pyface >=8.0
     - traits >=6.2.0
+    - importlib-metadata  # [py<38]
+  run_constrained:
+    - wxpython >=4.0.0
 
 test:
   imports:
     - traitsui
   requires:
     - pip
-    # pyface 7.3.0 requires:
-    - importlib-metadata
-    - importlib_resources
   commands:
     - pip check
 
 about:
-  home: http://docs.enthought.com/traitsui/
+  home: https://docs.enthought.com/traitsui/
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
   summary: TraitsUI - Traits-capable windowing framework
+  description: |
+    TraitsUI is a Python user interface toolkit that provides a declarative approach
+    to building interactive GUIs. It automatically generates user interfaces from
+    declarative object definitions using the Traits type system. TraitsUI supports
+    multiple GUI backends including Qt and wxPython, allowing developers to create
+    cross-platform desktop applications with minimal code. The framework is
+    particularly well-suited for scientific and engineering applications where
+    rapid prototyping and data visualization are important.
   doc_url: https://docs.enthought.com/traitsui/index.html
   dev_url: https://github.com/enthought/traitsui
 
